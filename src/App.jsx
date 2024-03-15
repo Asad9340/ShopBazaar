@@ -3,6 +3,8 @@ import Navbar from './Components/Navbar/Navbar';
 import { useEffect } from 'react';
 import Products from './Components/Products/Products';
 import Display from './Components/Display/Display';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -12,14 +14,43 @@ function App() {
     if (!isExists) {
       const newDisplayCart = [...displayCart, product];
       setDisplayCart(newDisplayCart);
+      toast.success('Product added successfully', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     } else {
-      alert('Product already exists!');
+      toast.warn('Products already exist !', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     }
   };
   const handleDelete = id => {
     const newDisplayCart = displayCart.filter(item => item.id !== id);
-    console.log(newDisplayCart)
+    console.log(newDisplayCart);
     setDisplayCart(newDisplayCart);
+    toast.error('Delete successfully', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
   };
   useEffect(() => {
     const loadData = async () => {
@@ -46,6 +77,20 @@ function App() {
           ></Display>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        limit={3}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition:Bounce
+      />
     </>
   );
 }
