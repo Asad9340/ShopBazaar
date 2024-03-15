@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import SingleItem from '../SingleItem/SingleItem';
-function Display({ displayCart }) {
-  console.log(displayCart);
+function Display({ displayCart, handleDelete }) {
   return (
     <div className="bg-gray-200 p-3 rounded-lg">
       <div className="flex justify-between mb-2">
@@ -10,7 +9,11 @@ function Display({ displayCart }) {
       </div>
       <hr className="border border-black" />
       {displayCart.map((item, index) => (
-        <SingleItem key={index} item={item}></SingleItem>
+        <SingleItem
+          key={index}
+          item={item}
+          handleDelete={handleDelete}
+        ></SingleItem>
       ))}
       <hr className="border border-black mt-2" />
       <div className="flex justify-between">

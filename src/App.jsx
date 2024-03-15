@@ -12,10 +12,13 @@ function App() {
     if (!isExists) {
       const newDisplayCart = [...displayCart, product];
       setDisplayCart(newDisplayCart);
+    } else {
+      alert('Product already exists!');
     }
-    else {
-      alert("Product already exists!");
-    }
+  };
+  const handleDelete = (id) => {
+    const newDisplayCart = displayCart.filter((item) => displayCart.id === id);
+    setDisplayCart(newDisplayCart);
   };
   useEffect(() => {
     const loadData = async () => {
@@ -36,7 +39,10 @@ function App() {
           ></Products>
         </div>
         <div className="p-2 col-span-4">
-          <Display displayCart={displayCart}></Display>
+          <Display
+            displayCart={displayCart}
+            handleDelete={handleDelete}
+          ></Display>
         </div>
       </div>
     </>
