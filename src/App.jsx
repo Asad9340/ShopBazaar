@@ -16,8 +16,9 @@ function App() {
       alert('Product already exists!');
     }
   };
-  const handleDelete = (id) => {
-    const newDisplayCart = displayCart.filter((item) => displayCart.id === id);
+  const handleDelete = id => {
+    const newDisplayCart = displayCart.filter(item => item.id !== id);
+    console.log(newDisplayCart)
     setDisplayCart(newDisplayCart);
   };
   useEffect(() => {
